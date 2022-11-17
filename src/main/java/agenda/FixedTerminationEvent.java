@@ -11,6 +11,8 @@ import java.time.temporal.ChronoUnit;
  */
 public class FixedTerminationEvent extends RepetitiveEvent {
 
+    private LocalDate myTerminationInclusive;
+    private long myNumberOfOccurrences;
     
     /**
      * Constructs a fixed terminationInclusive event ending at a given date
@@ -26,11 +28,12 @@ public class FixedTerminationEvent extends RepetitiveEvent {
      * </UL>
      * @param terminationInclusive the date when this event ends
      */
-    public FixedTerminationEvent(String title, LocalDateTime start, Duration duration, ChronoUnit frequency, LocalDate terminationInclusive) {
+    public FixedTerminationEvent(String title, LocalDateTime start, Duration duration, ChronoUnit frequency, long numberOfOccurrences, LocalDate terminationInclusive) {
          super(title, start, duration, frequency);
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
-
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        myNumberOfOccurrences = numberOfOccurrences;
+        myTerminationInclusive = this.getStart().toLocalDate().plus(myNumberOfOccurrences - 1, this.getFrequency());
     }
 
     /**
@@ -50,7 +53,8 @@ public class FixedTerminationEvent extends RepetitiveEvent {
     public FixedTerminationEvent(String title, LocalDateTime start, Duration duration, ChronoUnit frequency, long numberOfOccurrences) {
         super(title, start, duration, frequency);
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        myNumberOfOccurrences = numberOfOccurrences;
     }
 
     /**
@@ -59,12 +63,14 @@ public class FixedTerminationEvent extends RepetitiveEvent {
      */
     public LocalDate getTerminationDate() {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");   
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        return myTerminationInclusive;
     }
 
     public long getNumberOfOccurrences() {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        return myNumberOfOccurrences;
     }
         
 }

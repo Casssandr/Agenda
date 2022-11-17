@@ -1,6 +1,5 @@
 package agenda;
 
-import java.util.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
@@ -8,6 +7,9 @@ import java.time.temporal.ChronoUnit;
  * Description : A repetitive Event
  */
 public class RepetitiveEvent extends Event {
+
+    private ChronoUnit myFrequency;
+
     /**
      * Constructs a repetitive event
      *
@@ -24,7 +26,8 @@ public class RepetitiveEvent extends Event {
     public RepetitiveEvent(String title, LocalDateTime start, Duration duration, ChronoUnit frequency) {
         super(title, start, duration);
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        myFrequency = frequency;
     }
 
     /**
@@ -34,7 +37,10 @@ public class RepetitiveEvent extends Event {
      */
     public void addException(LocalDate date) {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        if (this.isInDay(date)){
+            throw new DateTimeException("Cet évènement tombe sur une date indisponible");
+        }
     }
 
     /**
@@ -43,7 +49,8 @@ public class RepetitiveEvent extends Event {
      */
     public ChronoUnit getFrequency() {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");    
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        return myFrequency;
     }
 
 }

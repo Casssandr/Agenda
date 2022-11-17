@@ -39,9 +39,17 @@ public class Event {
      * @param aDay the day to test
      * @return true if the event occurs on that day, false otherwise
      */
+
     public boolean isInDay(LocalDate aDay) {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        boolean bool = true;
+        LocalDateTime anEnd = myStart.plus(myDuration);
+        LocalDateTime aBetterDay = aDay.atStartOfDay();
+        if (((aBetterDay.isBefore(myStart)) || (aBetterDay.isAfter(anEnd)))){
+            bool = false;
+        }
+        return bool;
     }
    
     /**
@@ -66,6 +74,8 @@ public class Event {
         return myDuration;
     }
 
-   
-    
+    @Override
+    public String toString() {
+        return "Event{" + myTitle + ", le " + myStart + ", pendant " + myDuration + " temps}";
+    }
 }
